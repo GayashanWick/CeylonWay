@@ -31,10 +31,10 @@ const WhyCeylonWay = () => {
       <div className="max-w-7xl mx-auto">
         <motion.div 
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <h2 className="font-serif text-4xl md:text-5xl text-warm-ivory mb-4 w-full">Why Ceylon Way</h2>
           <div className="w-16 h-0.5 bg-muted-gold mx-auto mt-6"></div>
@@ -47,10 +47,10 @@ const WhyCeylonWay = () => {
               <motion.div 
                 key={index}
                 className="flex flex-col items-center text-center"
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
+                transition={{ duration: 0.7, delay: index * 0.12, ease: "easeOut" }}
               >
                 <div className="w-20 h-20 rounded-full border border-warm-ivory/20 flex items-center justify-center mb-6">
                   <Icon size={32} className="text-muted-gold" strokeWidth={1.5} />

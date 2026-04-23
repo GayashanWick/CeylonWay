@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const Instagram = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>;
 const Facebook = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>;
@@ -8,8 +9,14 @@ const Tiktok = ({ size }) => <svg width={size} height={size} viewBox="0 0 24 24"
 
 const Footer = () => {
   return (
-    <footer className="bg-charcoal text-warm-ivory pt-20 pb-10 px-6 md:px-12 border-t border-forest-green">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+    <footer className="bg-charcoal text-warm-ivory pt-20 pb-10 px-6 md:px-12 border-t border-forest-green overflow-hidden">
+      <motion.div 
+        className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-16"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
 
         {/* Brand */}
         <div className="md:col-span-1">
@@ -57,12 +64,18 @@ const Footer = () => {
             <li><a href="#" className="font-sans text-sm text-warm-ivory/70 hover:text-warm-ivory transition-colors">Booking Conditions</a></li>
           </ul>
         </div>
-      </div>
+      </motion.div>
 
-      <div className="max-w-7xl mx-auto pt-8 border-t border-warm-ivory/10 flex flex-col md:flex-row justify-between items-center text-warm-ivory/50 font-sans text-xs">
+      <motion.div 
+        className="max-w-7xl mx-auto pt-8 border-t border-warm-ivory/10 flex flex-col md:flex-row justify-between items-center text-warm-ivory/50 font-sans text-xs"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, delay: 0.12, ease: "easeOut" }}
+      >
         <p>© 2026 Ceylon Way</p>
         <p className="mt-4 md:mt-0">Designed elegantly in Sri Lanka</p>
-      </div>
+      </motion.div>
     </footer>
   );
 };

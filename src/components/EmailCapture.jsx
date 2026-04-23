@@ -6,10 +6,10 @@ const EmailCapture = () => {
     <section className="bg-forest-green py-24 px-6 md:px-12">
       <div className="max-w-4xl mx-auto text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <h2 className="font-serif text-3xl md:text-5xl text-warm-ivory mb-6">
             Get our free Off-Grid Sri Lanka Travel Guide

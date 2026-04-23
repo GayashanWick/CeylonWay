@@ -31,10 +31,10 @@ const FeaturedPackages = () => {
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="mb-16 text-center md:text-left"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
           <h2 className="font-serif text-4xl md:text-5xl text-forest-green mb-4">Our Signature Experiences</h2>
           <p className="font-sans text-charcoal/70 max-w-2xl text-lg">
@@ -47,10 +47,10 @@ const FeaturedPackages = () => {
             <motion.div
               key={index}
               className="group cursor-pointer"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.7, delay: index * 0.12, ease: "easeOut" }}
             >
               <div className="overflow-hidden relative h-96 mb-6">
                 <div className="absolute top-4 left-4 z-10 bg-warm-ivory text-forest-green font-sans text-xs tracking-widest font-semibold uppercase px-3 py-1 shadow-md">
