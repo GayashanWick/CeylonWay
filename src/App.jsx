@@ -7,6 +7,7 @@ import WhyCeylonWay from './components/WhyCeylonWay';
 import Testimonials from './components/Testimonials';
 import EmailCapture from './components/EmailCapture';
 import Footer from './components/Footer';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <EmailCapture />
       </main>
       <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }
