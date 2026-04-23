@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import heroBg from '../assets/hero-bg.png';
 
 const Hero = () => {
   return (
@@ -12,7 +13,7 @@ const Hero = () => {
         transition={{ duration: 20, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
       >
         <img 
-          src="https://images.unsplash.com/photo-1596017466637-462db71a45c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+          src={heroBg} 
           alt="Sri Lanka Wilderness" 
           className="w-full h-full object-cover brightness-[0.65]"
         />
