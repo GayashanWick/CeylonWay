@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Compass, Users, Coffee } from 'lucide-react';
+import { Compass, Users, Coffee, Headset } from 'lucide-react';
 
 const WhyCeylonWay = () => {
   const reasons = [
@@ -18,6 +18,11 @@ const WhyCeylonWay = () => {
       icon: Coffee,
       title: 'Zero-Compromise Comfort',
       description: 'Luxurious eco-lodges and premium glamping options for the ultimate wilderness stay.'
+    },
+    {
+      icon: Headset,
+      title: '24/7 Support',
+      description: 'Our dedicated support team is available round the clock to assist you during your journey.'
     }
   ];
 
@@ -35,7 +40,7 @@ const WhyCeylonWay = () => {
           <div className="w-16 h-0.5 bg-muted-gold mx-auto mt-6"></div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {reasons.map((reason, index) => {
             const Icon = reason.icon;
             return (
