@@ -10,7 +10,7 @@ const WhatsAppIcon = ({ size = 28 }) => (
 const FloatingWhatsApp = () => {
   return (
     <motion.a
-      href="https://wa.me/94770000000" // Placeholder number
+      href="https://wa.me/94784236507" // Redirects to +94 78 423 6507
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300 md:bottom-10 md:right-10 group"
