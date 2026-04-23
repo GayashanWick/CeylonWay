@@ -21,10 +21,17 @@ export default {
       } 
     },
     { name: 'duration', title: 'Duration (e.g. 3 Days / 2 Nights)', type: 'string' },
+    { name: 'durationOptions', title: 'Alternative Durations', type: 'array', of: [{ type: 'string' }] },
     { name: 'groupSize', title: 'Group Size (Max guests)', type: 'number' },
+    { name: 'difficulty', title: 'Difficulty', type: 'string', options: { list: ['Easy', 'Moderate', 'Challenging', 'Expert'] } },
+    { name: 'languages', title: 'Languages', type: 'string' },
+    { name: 'departsFrom', title: 'Departs From', type: 'string' },
     { name: 'priceFrom', title: 'Starting Price (LKR)', type: 'number' },
     { name: 'shortDescription', title: 'Short Description', type: 'text' },
+    { name: 'fullDescription', title: 'Full Description', type: 'array', of: [{ type: 'block' }] },
     { name: 'highlights', title: 'Highlights', type: 'array', of: [{ type: 'string' }] },
+    { name: 'inclusions', title: 'Inclusions', type: 'array', of: [{ type: 'string' }] },
+    { name: 'exclusions', title: 'Exclusions', type: 'array', of: [{ type: 'string' }] },
     {
       name: 'itinerary',
       title: 'Itinerary Days',

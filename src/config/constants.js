@@ -1,0 +1,2 @@
+export const WHATSAPP_NUMBER = "+94784236507";
+export const EXCHANGE_RATE_USD_LKR = 300;

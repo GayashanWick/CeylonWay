@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import PlaceholderPage from './pages/PlaceholderPage';
 import StudioPage from './pages/StudioPage';
 import Tours from './pages/Tours';
+import TourDetail from './pages/TourDetail';
 
 function App() {
   useEffect(() => {
@@ -31,7 +32,7 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="tours" element={<Tours />} />
-          <Route path="tours/:slug" element={<PlaceholderPage title="Tour Package" />} />
+          <Route path="tours/:slug" element={<TourDetail />} />
           <Route path="wellness" element={<PlaceholderPage title="Spa & Wellness" />} />
           <Route path="gear" element={<PlaceholderPage title="Gear Rental & Shop" />} />
           <Route path="blog" element={<PlaceholderPage title="Blog" />} />
