@@ -1,14 +1,9 @@
 import React, { useEffect } from 'react';
 import Lenis from 'lenis';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import CategoryCardRow from './components/CategoryCardRow';
-import FeaturedPackages from './components/FeaturedPackages';
-import WhyCeylonWay from './components/WhyCeylonWay';
-import Testimonials from './components/Testimonials';
-import EmailCapture from './components/EmailCapture';
-import Footer from './components/Footer';
-import FloatingWhatsApp from './components/FloatingWhatsApp';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import Home from './pages/Home';
+import PlaceholderPage from './pages/PlaceholderPage';
 
 function App() {
   useEffect(() => {
@@ -27,19 +22,20 @@ function App() {
   }, []);
 
   return (
-    <div className="font-sans bg-warm-ivory text-charcoal min-h-screen">
-      <Navbar />
-      <main>
-        <Hero />
-        <CategoryCardRow />
-        <FeaturedPackages />
-        <WhyCeylonWay />
-        <Testimonials />
-        <EmailCapture />
-      </main>
-      <Footer />
-      <FloatingWhatsApp />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="tours" element={<PlaceholderPage title="Tour Packages" />} />
+          <Route path="tours/:slug" element={<PlaceholderPage title="Tour Package" />} />
+          <Route path="wellness" element={<PlaceholderPage title="Spa & Wellness" />} />
+          <Route path="gear" element={<PlaceholderPage title="Gear Rental & Shop" />} />
+          <Route path="blog" element={<PlaceholderPage title="Blog" />} />
+          <Route path="about" element={<PlaceholderPage title="About Us" />} />
+          <Route path="contact" element={<PlaceholderPage title="Contact Us" />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
