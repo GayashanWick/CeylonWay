@@ -29,7 +29,7 @@ const FeaturedPackages = () => {
   return (
     <section className="py-24 bg-white px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
-        <motion.div 
+        <motion.div
           className="mb-16 text-center md:text-left"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -38,13 +38,13 @@ const FeaturedPackages = () => {
         >
           <h2 className="font-serif text-4xl md:text-5xl text-forest-green mb-4">Our Signature Experiences</h2>
           <p className="font-sans text-charcoal/70 max-w-2xl text-lg">
-            Raremed journeys crafted for the discerning traveler. Uncover the raw elegance of Sri Lanka with our exclusive packages.
+            Our signature itineraries unveil Sri Lanka in its most exquisite form — timeless, immersive, and quietly luxurious.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {packages.map((pkg, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               className="group cursor-pointer"
               initial={{ opacity: 0, y: 30 }}
@@ -56,9 +56,9 @@ const FeaturedPackages = () => {
                 <div className="absolute top-4 left-4 z-10 bg-warm-ivory text-forest-green font-sans text-xs tracking-widest font-semibold uppercase px-3 py-1 shadow-md">
                   {pkg.category}
                 </div>
-                <img 
-                  src={pkg.image} 
-                  alt={pkg.title} 
+                <img
+                  src={pkg.image}
+                  alt={pkg.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
               </div>
