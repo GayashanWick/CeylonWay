@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import PlaceholderPage from './pages/PlaceholderPage';
+import StudioPage from './pages/StudioPage';
+import Tours from './pages/Tours';
 
 function App() {
   useEffect(() => {
@@ -24,9 +26,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/studio/*" element={<StudioPage />} />
+        
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="tours" element={<PlaceholderPage title="Tour Packages" />} />
+          <Route path="tours" element={<Tours />} />
           <Route path="tours/:slug" element={<PlaceholderPage title="Tour Package" />} />
           <Route path="wellness" element={<PlaceholderPage title="Spa & Wellness" />} />
           <Route path="gear" element={<PlaceholderPage title="Gear Rental & Shop" />} />
