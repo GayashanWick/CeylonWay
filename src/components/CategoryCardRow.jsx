@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Flower2, Tent, Map, Star, Mountain } from 'lucide-react';
+import { MapPin, Flower2, Map, Landmark } from 'lucide-react';
 
 const CategoryCardRow = () => {
   const categories = [
@@ -15,24 +15,14 @@ const CategoryCardRow = () => {
       icon: Flower2,
     },
     {
-      title: 'Camping Gear',
-      description: 'Premium outfitting and equipment for your ultimate wilderness stay.',
-      icon: Tent,
-    },
-    {
       title: 'Cultural Trails',
       description: 'Immersive guided heritage walks exploring ancient forgotten kingdoms.',
       icon: Map,
     },
     {
-      title: 'Signature Journeys',
-      description: 'Hand-picked, luxurious itineraries showcasing the absolute best of the island.',
-      icon: Star,
-    },
-    {
-      title: 'Hidden Journeys',
-      description: 'Exclusive, secret locations known only to our most experienced local guides.',
-      icon: Mountain,
+      title: 'Iconic Sri Lanka',
+      description: 'The definitive journey through the island’s most celebrated landscapes and timeless wonders.',
+      icon: Landmark,
     }
   ];
 
@@ -55,7 +45,7 @@ const CategoryCardRow = () => {
     <section className="py-24 bg-warm-ivory px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
