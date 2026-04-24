@@ -15,7 +15,7 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
+  const baseNavLinks = [
     { name: 'Tours', href: '/tours' },
     { name: 'Destinations', href: '/destinations' },
     { name: 'Wellness', href: '/wellness' },
@@ -24,6 +24,10 @@ const Navbar = () => {
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
+
+  const navLinks = location.pathname === '/' 
+    ? baseNavLinks 
+    : [{ name: 'Home', href: '/' }, ...baseNavLinks];
 
   // Specific pages have a full-screen dark image at the top (Hero). 
   // Other standard pages have a light ivory background at the very top.
