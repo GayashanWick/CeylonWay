@@ -57,18 +57,18 @@ const About = () => {
   const team = [
     {
       name: "Gayashan",
-      role: "FOUNDER & HEAD GUIDE",
-      desc: "Grew up in Kalagedihena. Knows every trail in the Knuckles Range by memory. Makes the best campfire rice you will ever eat."
+      role: "CO-FOUNDER & DIGITAL DIRECTOR",
+      desc: "Architects the Ceylon Way brand online. Obsesses over user experience, marketing strategy, and the seamless digital translation of our wilderness."
+    },
+    {
+      name: "Alex",
+      role: "CO-FOUNDER & HEAD OF OPERATIONS",
+      desc: "The on-ground perfectionist. Ensures every local guide, hotel transfer, and trail experience strictly aligns with our luxury standard."
     },
     {
       name: "Dilini",
       role: "WELLNESS & AYURVEDA COORDINATOR",
       desc: "Trained Ayurvedic practitioner with 8 years experience. Designs every wellness retreat itinerary personally. Speaks English, Sinhala and Tamil."
-    },
-    {
-      name: "Kasun",
-      role: "LOGISTICS & GEAR MANAGER",
-      desc: "Former national parks ranger turned gear specialist. If there's a problem on a trail, Kasun has already solved it."
     }
   ];
 
@@ -114,17 +114,17 @@ const About = () => {
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="w-full md:w-7/12">
                <div className="prose prose-lg">
                   <p className="font-serif text-2xl text-forest-green mb-6 leading-relaxed italic">
-                     "Ceylon Way was born out of frustration. After years of watching visitors arrive in Sri Lanka and leave having seen almost nothing of the real island — the same resorts, the same buses, the same photograph in front of the same temple — we decided to do something different."
+                     "Ceylon Way was born out of shared frustration. After watching visitors arrive in Sri Lanka and leave having seen almost nothing of the real island — the same resorts, the same buses, the same templated itineraries — we decided to build something different."
                   </p>
                   <p className="font-sans text-[17px] text-charcoal/80 mb-6 leading-[1.8]">
-                     My name is Gayashan. I grew up in Kalagedihena, Gampaha — a small town surrounded by rubber trees, paddy fields, and forests that most travellers drive straight past on the way to Kandy. I spent my childhood in those forests. I know where the jungle goes quiet. I know which trails have no name on any map.
+                     Our names are Gayashan and Alex. We built Ceylon Way to connect Sri Lanka's deepest, most authentic wilderness with a standard of luxury that international travellers expect. 
                   </p>
                   <p className="font-sans text-[17px] text-charcoal/80 mb-8 leading-[1.8]">
-                     Ceylon Way exists to share that Sri Lanka — the one locals know, the one that doesn't appear on any itinerary, the one that stays with you long after you've gone home. We keep our groups small deliberately. We move slowly on purpose. And every experience we offer is one we would take ourselves.
+                     While Gayashan drives the brand's digital presence, architectural systems, and international marketing strategy — Alex commands our on-ground operations, ensuring every guide, trail, and retreat physically meets our exacting standards. We keep our groups deliberately small. We curate every detail. And every experience we offer is one we would take ourselves.
                   </p>
                   <div className="flex flex-col">
-                     <span className="font-serif text-4xl text-forest-green italic" style={{ fontFamily: "'Dancing Script', cursive" }}>Gayashan</span>
-                     <span className="font-sans text-xs uppercase tracking-widest text-charcoal/60 font-bold mt-2">— Founder, Ceylon Way</span>
+                     <span className="font-serif text-4xl text-forest-green italic" style={{ fontFamily: "'Dancing Script', cursive" }}>Gayashan & Alex</span>
+                     <span className="font-sans text-xs uppercase tracking-widest text-charcoal/60 font-bold mt-2">— Co-Founders, Ceylon Way</span>
                   </div>
                </div>
             </motion.div>
@@ -195,7 +195,9 @@ const About = () => {
                      className="flex flex-col items-center text-center group"
                   >
                      <div className="w-48 h-48 rounded-full bg-gray-50 border-4 border-warm-ivory shadow-lg overflow-hidden mb-6 flex items-center justify-center group-hover:border-muted-gold transition-colors">
-                         <span className="font-sans text-[10px] tracking-widest text-charcoal/30 uppercase">Photo</span>
+                         <span className="font-sans text-[10px] tracking-widest text-charcoal/30 uppercase text-center px-4">
+                           {member.name === 'Alex' ? 'Portrait Coming Soon' : 'Photo'}
+                         </span>
                      </div>
                      <h3 className="font-serif text-3xl text-forest-green mb-1">{member.name}</h3>
                      <h4 className="font-sans text-[10px] font-bold uppercase tracking-widest text-muted-gold mb-4">{member.role}</h4>
