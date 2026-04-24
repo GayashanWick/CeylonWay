@@ -15,6 +15,8 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Destinations from './pages/Destinations';
 
+import ScrollToTop from './components/ScrollToTop';
+
 function App() {
   useEffect(() => {
     const lenis = new Lenis({
@@ -33,6 +35,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/studio/*" element={<StudioPage />} />
         
