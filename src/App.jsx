@@ -11,6 +11,8 @@ import Wellness from './pages/Wellness';
 import Gear from './pages/Gear';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 function App() {
   useEffect(() => {
@@ -41,8 +43,8 @@ function App() {
           <Route path="gear" element={<Gear />} />
           <Route path="blog" element={<Blog />} />
           <Route path="blog/:slug" element={<BlogPost />} />
-          <Route path="about" element={<PlaceholderPage title="About Us" />} />
-          <Route path="contact" element={<PlaceholderPage title="Contact Us" />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
         </Route>
       </Routes>
     </BrowserRouter>
