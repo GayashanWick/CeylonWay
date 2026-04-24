@@ -322,7 +322,9 @@ const Tours = () => {
                 </div>
                 
                 <div className="p-8 flex-grow flex flex-col">
-                  <h3 className="font-serif text-3xl text-charcoal mb-4 group-hover:text-muted-gold transition-colors line-clamp-2">{pkg.title}</h3>
+                  <Link to={`/tours/${pkg.slug}`}>
+                    <h3 className="font-serif text-3xl text-charcoal mb-4 group-hover:text-muted-gold transition-colors line-clamp-2">{pkg.title}</h3>
+                  </Link>
                   <p className="font-sans text-charcoal/70 mb-8 line-clamp-3 font-light text-sm">
                     {pkg.shortDescription}
                   </p>
