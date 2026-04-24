@@ -68,7 +68,11 @@ const Navbar = () => {
       }`}>
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className={`font-serif text-3xl font-bold tracking-tight transition-colors ${logoColorClass}`}>
+        <Link 
+          to="/" 
+          onClick={(e) => handleNavClick(e, '/')}
+          className={`font-serif text-3xl font-bold tracking-tight transition-colors ${logoColorClass}`}
+        >
           Ceylon Way
         </Link>
 
@@ -120,7 +124,13 @@ const Navbar = () => {
 
             {/* Header / Close Area */}
             <div className="relative z-10 px-6 py-6 flex justify-between items-center">
-              <span className="font-serif text-3xl font-bold tracking-tight text-warm-ivory">Ceylon Way</span>
+              <Link 
+                to="/" 
+                onClick={(e) => handleNavClick(e, '/')}
+                className="font-serif text-3xl font-bold tracking-tight text-warm-ivory"
+              >
+                Ceylon Way
+              </Link>
               <button 
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-10 h-10 rounded-sm border border-white/20 flex items-center justify-center text-warm-ivory hover:bg-white/10 hover:border-white/40 transition-colors"
