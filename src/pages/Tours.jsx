@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { client } from '../sanity/client';
 import { Link } from 'react-router-dom';
-import { SlidersHorizontal, ChevronDown } from 'lucide-react';
+import { SlidersHorizontal, ChevronDown, Check, X } from 'lucide-react';
 
 const CATEGORY_MAP = [
   { label: 'Off-Grid', value: 'off-grid' },
@@ -21,7 +21,34 @@ const Tours = () => {
 
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [sortOption, setSortOption] = useState('popular');
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  
+  const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
+  const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
+  
+  const filterRef = useRef(null);
+  const sortRef = useRef(null);
+
+  const SORT_OPTIONS = [
+    { label: 'Most Popular', value: 'popular' },
+    { label: 'Price: Low to High', value: 'price-low' },
+    { label: 'Price: High to Low', value: 'price-high' },
+    { label: 'Newest', value: 'newest' }
+  ];
+
+  const currentSortLabel = SORT_OPTIONS.find(opt => opt.value === sortOption)?.label || 'Most Popular';
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (filterRef.current && !filterRef.current.contains(event.target)) {
+        setIsFilterDropdownOpen(false);
+      }
+      if (sortRef.current && !sortRef.current.contains(event.target)) {
+        setIsSortDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   useEffect(() => {
     const fetchPackages = async () => {
@@ -100,114 +127,167 @@ const Tours = () => {
           </div>
         ) : (
           <>
-            {/* Filtering and Sorting Row */}
-            <div className="mb-12">
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-gray-200 pb-6">
-                
-                {/* Desktop Categories */}
-                <div className="hidden md:flex flex-wrap gap-2">
-                  {CATEGORY_MAP.map(cat => {
-                    const isSelected = selectedCategories.includes(cat.value);
-                    return (
-                      <button
-                        key={cat.value}
-                        onClick={() => {
-                          setSelectedCategories(prev => 
-                            prev.includes(cat.value) 
-                              ? prev.filter(c => c !== cat.value)
-                              : [...prev, cat.value]
+            {/* Custom Filtering and Sorting Row */}
+            <div className="mb-12 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-20">
+              
+              {/* FILTER DROPDOWN */}
+              <div className="relative w-full sm:w-auto" ref={filterRef}>
+                <button 
+                  onClick={() => {
+                    setIsFilterDropdownOpen(!isFilterDropdownOpen);
+                    setIsSortDropdownOpen(false);
+                  }}
+                  className={`w-full sm:w-auto flex items-center justify-between sm:justify-start gap-4 px-5 py-3 border transition-colors ${
+                    isFilterDropdownOpen 
+                      ? 'border-charcoal bg-white text-charcoal shadow-sm' 
+                      : selectedCategories.length > 0 
+                        ? 'border-charcoal bg-white text-charcoal'
+                        : 'border-gray-200 bg-transparent text-charcoal hover:border-charcoal'
+                  }`}
+                >
+                  <span className="font-sans text-xs uppercase tracking-widest font-semibold flex items-center gap-2">
+                    <SlidersHorizontal size={14} />
+                    Filter by Experience 
+                    {selectedCategories.length > 0 && (
+                      <span className="w-5 h-5 rounded-full bg-muted-gold text-white flex items-center justify-center text-[10px] ml-1">{selectedCategories.length}</span>
+                    )}
+                  </span>
+                  <ChevronDown size={14} className={`transition-transform duration-300 ${isFilterDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                <AnimatePresence>
+                  {isFilterDropdownOpen && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full left-0 right-0 sm:right-auto mt-2 w-full sm:w-72 bg-white border border-gray-100 shadow-xl z-50 py-2"
+                    >
+                      <div className="px-5 py-3 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
+                        <span className="font-sans text-[10px] uppercase tracking-widest text-charcoal/50 font-bold">Select Categories</span>
+                        {selectedCategories.length > 0 && (
+                          <button 
+                            onClick={() => setSelectedCategories([])}
+                            className="font-sans text-[10px] uppercase tracking-widest text-muted-gold hover:text-charcoal transition-colors font-bold"
+                          >
+                            Clear
+                          </button>
+                        )}
+                      </div>
+                      <div className="max-h-[300px] overflow-y-auto py-2 scrollbar-thin scrollbar-thumb-gray-200">
+                        {CATEGORY_MAP.map(cat => {
+                          const isSelected = selectedCategories.includes(cat.value);
+                          return (
+                            <button
+                              key={cat.value}
+                              onClick={() => {
+                                setSelectedCategories(prev => 
+                                  prev.includes(cat.value) 
+                                    ? prev.filter(c => c !== cat.value)
+                                    : [...prev, cat.value]
+                                );
+                              }}
+                              className="w-full flex items-center justify-between px-5 py-3 hover:bg-warm-ivory transition-colors text-left group"
+                            >
+                              <span className={`font-sans text-xs uppercase tracking-widest transition-colors ${isSelected ? 'text-charcoal font-bold' : 'text-charcoal/70 group-hover:text-charcoal'}`}>
+                                {cat.label}
+                              </span>
+                              <div className={`w-4 h-4 border flex items-center justify-center transition-colors ${isSelected ? 'border-muted-gold bg-muted-gold text-white' : 'border-gray-300 text-transparent group-hover:border-charcoal'}`}>
+                                <Check size={12} strokeWidth={3} />
+                              </div>
+                            </button>
                           );
-                        }}
-                        className={`px-4 py-2 text-xs tracking-widest uppercase font-semibold border transition-all duration-300 ${
-                          isSelected 
-                            ? 'bg-charcoal text-white border-charcoal' 
-                            : 'bg-transparent text-charcoal/60 border-gray-200 hover:border-charcoal hover:text-charcoal'
-                        }`}
-                      >
-                        {cat.label}
-                      </button>
-                    );
-                  })}
-                </div>
-
-                {/* Mobile Filter Toggle */}
-                <div className="w-full md:hidden flex justify-between items-center">
-                  <button 
-                    onClick={() => setIsFilterOpen(!isFilterOpen)}
-                    className="flex items-center gap-2 text-sm font-semibold tracking-widest uppercase text-charcoal"
-                  >
-                    <SlidersHorizontal size={16} /> Filters {selectedCategories.length > 0 && `(${selectedCategories.length})`}
-                  </button>
-                </div>
-
-                {/* Sort Dropdown */}
-                <div className="relative">
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs tracking-widest uppercase font-semibold text-charcoal/50">Sort By</span>
-                    <div className="relative group">
-                        <select 
-                          value={sortOption}
-                          onChange={(e) => setSortOption(e.target.value)}
-                          className="appearance-none bg-transparent border-none text-sm font-semibold text-charcoal pr-8 focus:outline-none cursor-pointer"
-                        >
-                          <option value="popular">Most Popular</option>
-                          <option value="price-low">Price: Low to High</option>
-                          <option value="price-high">Price: High to Low</option>
-                          <option value="newest">Newest</option>
-                        </select>
-                        <ChevronDown size={14} className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none text-charcoal/50 group-hover:text-charcoal" />
-                    </div>
-                  </div>
-                </div>
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
 
-              {/* Mobile Categories Drawer */}
-              {isFilterOpen && (
-                <motion.div 
-                  initial={{ height: 0, opacity: 0 }}
-                  animate={{ height: "auto", opacity: 1 }}
-                  className="md:hidden pt-4 pb-2 flex flex-wrap gap-2 border-b border-gray-200 mb-6"
+              {/* SORT DROPDOWN */}
+              <div className="relative w-full sm:w-auto" ref={sortRef}>
+                <button 
+                  onClick={() => {
+                    setIsSortDropdownOpen(!isSortDropdownOpen);
+                    setIsFilterDropdownOpen(false);
+                  }}
+                  className={`w-full sm:w-auto flex items-center justify-between sm:justify-start gap-4 px-5 py-3 border transition-colors ${
+                    isSortDropdownOpen 
+                      ? 'border-charcoal bg-white text-charcoal shadow-sm' 
+                      : 'border-gray-200 bg-transparent text-charcoal hover:border-charcoal'
+                  }`}
                 >
-                  {CATEGORY_MAP.map(cat => {
-                    const isSelected = selectedCategories.includes(cat.value);
-                    return (
-                      <button
-                        key={cat.value}
-                        onClick={() => {
-                          setSelectedCategories(prev => 
-                            prev.includes(cat.value) 
-                              ? prev.filter(c => c !== cat.value)
-                              : [...prev, cat.value]
-                          );
-                        }}
-                        className={`px-4 py-2 text-[10px] tracking-widest uppercase font-semibold border transition-all duration-300 ${
-                          isSelected 
-                            ? 'bg-charcoal text-white border-charcoal' 
-                            : 'bg-transparent text-charcoal/60 border-gray-200 hover:border-charcoal hover:text-charcoal'
-                        }`}
-                      >
-                        {cat.label}
-                      </button>
-                    );
-                  })}
-                </motion.div>
-              )}
-
-              {/* Selection Summary / Clear Filters */}
-              {selectedCategories.length > 0 && (
-                <div className="flex justify-between items-center mt-6">
-                  <span className="text-xs uppercase font-sans tracking-widest text-charcoal/50 font-semibold">
-                    {filteredAndSortedPackages.length} package{filteredAndSortedPackages.length !== 1 && 's'} found
+                  <span className="font-sans text-xs uppercase tracking-widest font-semibold flex items-center">
+                    <span className="text-charcoal/50 mr-2">Sort By:</span>
+                    {currentSortLabel}
                   </span>
-                  <button 
-                    onClick={() => setSelectedCategories([])}
-                    className="text-xs uppercase font-sans tracking-widest text-muted-gold font-bold hover:text-charcoal transition-colors shrink-0"
-                  >
-                    Clear Filters
-                  </button>
-                </div>
-              )}
+                  <ChevronDown size={14} className={`transition-transform duration-300 ${isSortDropdownOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                <AnimatePresence>
+                  {isSortDropdownOpen && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.2 }}
+                      className="absolute top-full right-0 left-0 sm:left-auto mt-2 w-full sm:w-56 bg-white border border-gray-100 shadow-xl z-50 py-2"
+                    >
+                      {SORT_OPTIONS.map(opt => {
+                        const isSelected = sortOption === opt.value;
+                        return (
+                          <button
+                            key={opt.value}
+                            onClick={() => {
+                              setSortOption(opt.value);
+                              setIsSortDropdownOpen(false);
+                            }}
+                            className="w-full flex items-center justify-between px-5 py-3 hover:bg-warm-ivory transition-colors text-left group"
+                          >
+                            <span className={`font-sans text-xs uppercase tracking-widest transition-colors ${isSelected ? 'text-charcoal font-bold' : 'text-charcoal/70 group-hover:text-charcoal'}`}>
+                              {opt.label}
+                            </span>
+                            {isSelected && <Check size={14} className="text-muted-gold" strokeWidth={3} />}
+                          </button>
+                        );
+                      })}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+               </div>
             </div>
+
+            {/* Active Filters Display & Summary */}
+            {selectedCategories.length > 0 && (
+              <div className="mb-10 flex flex-wrap items-center gap-3">
+                {selectedCategories.map(catValue => {
+                  const catLabel = CATEGORY_MAP.find(c => c.value === catValue)?.label;
+                  return (
+                    <motion.span 
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      key={catValue} 
+                      className="inline-flex items-center gap-2 pl-3 pr-2 py-1.5 bg-white border border-gray-200 shadow-sm text-charcoal font-sans text-[10px] uppercase tracking-widest font-bold"
+                    >
+                      {catLabel}
+                      <button 
+                        onClick={() => setSelectedCategories(selectedCategories.filter(c => c !== catValue))}
+                        className="w-4 h-4 flex items-center justify-center text-charcoal/40 hover:text-charcoal hover:bg-gray-100 transition-colors rounded-sm"
+                      >
+                        <X size={12} strokeWidth={3} />
+                      </button>
+                    </motion.span>
+                  );
+                })}
+                <button 
+                  onClick={() => setSelectedCategories([])}
+                  className="font-sans text-[10px] uppercase tracking-widest text-charcoal/50 hover:text-charcoal transition-colors font-bold ml-2 underline decoration-gray-300 underline-offset-4 hover:decoration-charcoal"
+                >
+                  Clear All Filters
+                </button>
+              </div>
+            )}
 
             {filteredAndSortedPackages.length === 0 ? (
               <div className="text-center py-20 font-sans text-charcoal/60 bg-white/50 border border-gray-100 p-10 max-w-2xl mx-auto shadow-sm">
