@@ -65,14 +65,14 @@ const FeaturedPackages = () => {
             {packages.map((pkg, index) => (
               <motion.div
                 key={index}
-                className="group cursor-pointer"
+                className="group bg-white shadow-sm md:hover:shadow-2xl md:hover:-translate-y-1.5 md:hover:scale-[1.01] transition-all duration-500 ease-out flex flex-col"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: index * 0.12, ease: "easeOut" }}
               >
-                <div className="overflow-hidden relative h-96 mb-6">
-                  <div className="absolute top-4 left-4 z-10 bg-warm-ivory text-forest-green font-sans text-xs tracking-widest font-semibold uppercase px-3 py-1 shadow-md">
+                <Link to={`/tours/${pkg.slug}`} className="block overflow-hidden relative h-72 cursor-pointer">
+                  <div className="absolute top-4 left-4 z-10 bg-warm-ivory text-forest-green font-sans text-[10px] tracking-widest font-bold uppercase px-3 py-1.5 shadow-md">
                     {pkg.category?.replace('-', ' ')}
                   </div>
                   {pkg.imageUrl ? (
@@ -86,15 +86,26 @@ const FeaturedPackages = () => {
                       No Image Set
                     </div>
                   )}
-                </div>
-                <h3 className="font-serif text-3xl text-charcoal mb-2 group-hover:text-muted-gold transition-colors line-clamp-1">{pkg.title}</h3>
-                <div className="flex justify-between items-center mb-6 border-b border-gray-200 pb-4">
-                  <span className="font-sans text-sm text-charcoal/60 tracking-wider uppercase font-medium line-clamp-1">{pkg.duration}</span>
-                  <span className="font-sans text-sm font-semibold text-forest-green whitespace-nowrap ml-2">From LKR {pkg.priceFrom?.toLocaleString()}</span>
-                </div>
-                <Link to={`/tours/${pkg.slug}`} className="font-sans text-sm font-semibold tracking-widest uppercase text-charcoal hover:text-muted-gold transition-colors flex items-center">
-                  View Package <span className="ml-2">→</span>
                 </Link>
+                
+                <div className="p-8 flex-grow flex flex-col">
+                  <Link to={`/tours/${pkg.slug}`}>
+                    <h3 className="font-serif text-3xl text-charcoal mb-4 group-hover:text-muted-gold transition-colors line-clamp-1">{pkg.title}</h3>
+                  </Link>
+                  <p className="font-sans text-charcoal/70 mb-8 line-clamp-3 font-light text-sm">
+                    {pkg.shortDescription}
+                  </p>
+
+                  <div className="mt-auto">
+                    <div className="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+                      <span className="font-sans text-xs text-charcoal/60 tracking-wider uppercase font-medium line-clamp-1">{pkg.duration}</span>
+                      <span className="font-sans text-sm font-semibold text-forest-green whitespace-nowrap ml-2">From LKR {pkg.priceFrom?.toLocaleString()}</span>
+                    </div>
+                    <Link to={`/tours/${pkg.slug}`} className="font-sans text-xs font-bold tracking-widest uppercase text-charcoal hover:text-muted-gold transition-colors flex items-center">
+                      View Package <span className="ml-2">→</span>
+                    </Link>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </div>
