@@ -19,6 +19,17 @@ const DifficultyDots = ({ level }) => {
   );
 };
 
+const mapCoordinates = {
+  'sinharaja-rainforest': '6.4055,80.4571',
+  'knuckles-range': '7.4116,80.7852',
+  'horton-plains-worlds-end': '6.8041,80.8062',
+  'yala-national-park': '6.3756,81.3802',
+  'ella-little-adams-peak': '6.8667,81.0466',
+  'galle-southern-coast': '6.0328,80.2150',
+  'kandy-hill-country': '7.2906,80.6337',
+  'anuradhapura-ancient-cities': '8.3114,80.4037'
+};
+
 const Destinations = () => {
   const [destinations, setDestinations] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -219,7 +230,7 @@ const Destinations = () => {
             {/* Iframe Base */}
             <div className="w-full h-[350px] md:h-[500px] rounded-sm overflow-hidden border border-muted-gold shadow-xl bg-white p-2 mb-6">
                <iframe 
-                  src="https://maps.google.com/maps?q=7.8731,80.7718&t=&z=8&ie=UTF8&iwloc=&output=embed" 
+                  src={`https://maps.google.com/maps?q=${mapCoordinates[activeMapPin] || '7.8731,80.7718'}&t=&z=10&ie=UTF8&iwloc=&output=embed`} 
                   width="100%" height="100%" style={{ border: 0, filter: 'contrast(1.05) saturate(1.2)' }} allowFullScreen="" loading="lazy" referrerPolicy="no-referrer-when-downgrade"
                ></iframe>
             </div>
