@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import heroBg from '../assets/hero-bg.png';
 
 const Hero = () => {
@@ -50,12 +51,12 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
         >
-          <a href="#tours" className="bg-forest-green text-warm-ivory px-8 py-3.5 border border-forest-green hover:bg-forest-green/90 transition-colors font-sans text-sm tracking-widest uppercase font-semibold">
+          <Link to="/tours" className="bg-forest-green text-warm-ivory px-8 py-3.5 border border-forest-green hover:bg-forest-green/90 transition-colors font-sans text-sm tracking-widest uppercase font-semibold">
             Explore Tours
-          </a>
-          <a href="#wellness" className="bg-transparent text-warm-ivory border-2 border-muted-gold px-8 py-3.5 hover:bg-muted-gold hover:text-white transition-colors font-sans text-sm tracking-widest uppercase font-semibold">
+          </Link>
+          <Link to="/wellness" className="bg-transparent text-warm-ivory border-2 border-muted-gold px-8 py-3.5 hover:bg-muted-gold hover:text-white transition-colors font-sans text-sm tracking-widest uppercase font-semibold">
             View Wellness Retreats
-          </a>
+          </Link>
         </motion.div>
       </div>
     </section>
