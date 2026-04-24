@@ -304,7 +304,7 @@ const Tours = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: index * 0.12, ease: "easeOut" }}
               >
-                <div className="overflow-hidden relative h-72">
+                <Link to={`/tours/${pkg.slug}`} className="block overflow-hidden relative h-72 cursor-pointer">
                   <div className="absolute top-4 left-4 z-10 bg-warm-ivory text-forest-green font-sans text-[10px] tracking-widest font-bold uppercase px-3 py-1.5 shadow-md">
                     {CATEGORY_MAP.find(c => c.value === pkg.category)?.label || pkg.category}
                   </div>
@@ -319,7 +319,7 @@ const Tours = () => {
                       No Image Set
                     </div>
                   )}
-                </div>
+                </Link>
                 
                 <div className="p-8 flex-grow flex flex-col">
                   <Link to={`/tours/${pkg.slug}`}>
