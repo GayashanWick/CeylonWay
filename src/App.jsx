@@ -9,6 +9,7 @@ import Tours from './pages/Tours';
 import TourDetail from './pages/TourDetail';
 import Wellness from './pages/Wellness';
 import Gear from './pages/Gear';
+import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import About from './pages/About';
 import Contact from './pages/Contact';
