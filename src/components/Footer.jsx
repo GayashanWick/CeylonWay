@@ -41,6 +41,7 @@ const Footer = () => {
           <h4 className="font-sans font-semibold tracking-widest text-xs uppercase text-muted-gold mb-6">Experiences</h4>
           <ul className="space-y-4">
             <li><Link to="/tours" className="font-sans text-sm text-warm-ivory/70 hover:text-warm-ivory transition-colors">Off-Grid Tours</Link></li>
+            <li><Link to="/destinations" className="font-sans text-sm text-warm-ivory/70 hover:text-warm-ivory transition-colors">Destinations</Link></li>
             <li><Link to="/wellness" className="font-sans text-sm text-warm-ivory/70 hover:text-warm-ivory transition-colors">Wellness Retreats</Link></li>
             <li><Link to="/tours" className="font-sans text-sm text-warm-ivory/70 hover:text-warm-ivory transition-colors">Cultural Trails</Link></li>
             <li><Link to="/gear" className="font-sans text-sm text-warm-ivory/70 hover:text-warm-ivory transition-colors">Camping Gear</Link></li>
