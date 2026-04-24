@@ -15,6 +15,16 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleNavClick = (e, href) => {
+    if (location.pathname === href) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      setMobileMenuOpen(false);
+    } else {
+      setMobileMenuOpen(false);
+    }
+  };
+
   const baseNavLinks = [
     { name: 'Tours', href: '/tours' },
     { name: 'Destinations', href: '/destinations' },
@@ -55,7 +65,11 @@ const Navbar = () => {
           <ul className="flex space-x-8">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <Link to={link.href} className={`font-sans text-sm tracking-wide font-medium transition-colors hover:text-muted-gold ${textColorClass}`}>
+                <Link 
+                  to={link.href} 
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className={`font-sans text-sm tracking-wide font-medium transition-colors hover:text-muted-gold ${textColorClass}`}
+                >
                   {link.name}
                 </Link>
               </li>
@@ -81,7 +95,11 @@ const Navbar = () => {
           <ul className="flex flex-col py-4 px-6 space-y-4">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <Link to={link.href} className="font-sans text-charcoal text-lg font-medium hover:text-muted-gold block" onClick={() => setMobileMenuOpen(false)}>
+                <Link 
+                  to={link.href} 
+                  className="font-sans text-charcoal text-lg font-medium hover:text-muted-gold block" 
+                  onClick={(e) => handleNavClick(e, link.href)}
+                >
                   {link.name}
                 </Link>
               </li>
