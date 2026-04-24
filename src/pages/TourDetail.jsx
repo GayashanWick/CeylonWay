@@ -74,7 +74,7 @@ const TourDetail = () => {
   }
 
   return (
-    <div className="bg-warm-ivory min-h-screen pt-20">
+    <div className="bg-warm-ivory min-h-screen">
       
       {/* 1. HERO SECTION */}
       <section className="relative h-[70vh] md:h-[80vh] w-full overflow-hidden flex items-end">
