@@ -3,6 +3,197 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronRight, ChevronDown, CheckCircle2 } from 'lucide-react';
 import { WHATSAPP_NUMBER } from '../config/constants';
+import Select from 'react-select';
+
+const countryOptions = [
+  { value: 'Afghanistan', label: 'Afghanistan' },
+  { value: 'Albania', label: 'Albania' },
+  { value: 'Algeria', label: 'Algeria' },
+  { value: 'Andorra', label: 'Andorra' },
+  { value: 'Angola', label: 'Angola' },
+  { value: 'Antigua and Barbuda', label: 'Antigua and Barbuda' },
+  { value: 'Argentina', label: 'Argentina' },
+  { value: 'Armenia', label: 'Armenia' },
+  { value: 'Australia', label: 'Australia' },
+  { value: 'Austria', label: 'Austria' },
+  { value: 'Azerbaijan', label: 'Azerbaijan' },
+  { value: 'Bahamas', label: 'Bahamas' },
+  { value: 'Bahrain', label: 'Bahrain' },
+  { value: 'Bangladesh', label: 'Bangladesh' },
+  { value: 'Barbados', label: 'Barbados' },
+  { value: 'Belarus', label: 'Belarus' },
+  { value: 'Belgium', label: 'Belgium' },
+  { value: 'Belize', label: 'Belize' },
+  { value: 'Benin', label: 'Benin' },
+  { value: 'Bhutan', label: 'Bhutan' },
+  { value: 'Bolivia', label: 'Bolivia' },
+  { value: 'Bosnia and Herzegovina', label: 'Bosnia and Herzegovina' },
+  { value: 'Botswana', label: 'Botswana' },
+  { value: 'Brazil', label: 'Brazil' },
+  { value: 'Brunei', label: 'Brunei' },
+  { value: 'Bulgaria', label: 'Bulgaria' },
+  { value: 'Burkina Faso', label: 'Burkina Faso' },
+  { value: 'Burundi', label: 'Burundi' },
+  { value: 'Côte d\'Ivoire', label: 'Côte d\'Ivoire' },
+  { value: 'Cabo Verde', label: 'Cabo Verde' },
+  { value: 'Cambodia', label: 'Cambodia' },
+  { value: 'Cameroon', label: 'Cameroon' },
+  { value: 'Canada', label: 'Canada' },
+  { value: 'Central African Republic', label: 'Central African Republic' },
+  { value: 'Chad', label: 'Chad' },
+  { value: 'Chile', label: 'Chile' },
+  { value: 'China', label: 'China' },
+  { value: 'Colombia', label: 'Colombia' },
+  { value: 'Comoros', label: 'Comoros' },
+  { value: 'Congo (Congo-Brazzaville)', label: 'Congo (Congo-Brazzaville)' },
+  { value: 'Costa Rica', label: 'Costa Rica' },
+  { value: 'Croatia', label: 'Croatia' },
+  { value: 'Cuba', label: 'Cuba' },
+  { value: 'Cyprus', label: 'Cyprus' },
+  { value: 'Czechia (Czech Republic)', label: 'Czechia (Czech Republic)' },
+  { value: 'Denmark', label: 'Denmark' },
+  { value: 'Djibouti', label: 'Djibouti' },
+  { value: 'Dominica', label: 'Dominica' },
+  { value: 'Dominican Republic', label: 'Dominican Republic' },
+  { value: 'Ecuador', label: 'Ecuador' },
+  { value: 'Egypt', label: 'Egypt' },
+  { value: 'El Salvador', label: 'El Salvador' },
+  { value: 'Equatorial Guinea', label: 'Equatorial Guinea' },
+  { value: 'Eritrea', label: 'Eritrea' },
+  { value: 'Estonia', label: 'Estonia' },
+  { value: 'Ethiopia', label: 'Ethiopia' },
+  { value: 'Fiji', label: 'Fiji' },
+  { value: 'Finland', label: 'Finland' },
+  { value: 'France', label: 'France' },
+  { value: 'Gabon', label: 'Gabon' },
+  { value: 'Gambia', label: 'Gambia' },
+  { value: 'Georgia', label: 'Georgia' },
+  { value: 'Germany', label: 'Germany' },
+  { value: 'Ghana', label: 'Ghana' },
+  { value: 'Greece', label: 'Greece' },
+  { value: 'Grenada', label: 'Grenada' },
+  { value: 'Guatemala', label: 'Guatemala' },
+  { value: 'Guinea', label: 'Guinea' },
+  { value: 'Guinea-Bissau', label: 'Guinea-Bissau' },
+  { value: 'Guyana', label: 'Guyana' },
+  { value: 'Haiti', label: 'Haiti' },
+  { value: 'Honduras', label: 'Honduras' },
+  { value: 'Hungary', label: 'Hungary' },
+  { value: 'Iceland', label: 'Iceland' },
+  { value: 'India', label: 'India' },
+  { value: 'Indonesia', label: 'Indonesia' },
+  { value: 'Iran', label: 'Iran' },
+  { value: 'Iraq', label: 'Iraq' },
+  { value: 'Ireland', label: 'Ireland' },
+  { value: 'Israel', label: 'Israel' },
+  { value: 'Italy', label: 'Italy' },
+  { value: 'Jamaica', label: 'Jamaica' },
+  { value: 'Japan', label: 'Japan' },
+  { value: 'Jordan', label: 'Jordan' },
+  { value: 'Kazakhstan', label: 'Kazakhstan' },
+  { value: 'Kenya', label: 'Kenya' },
+  { value: 'Kiribati', label: 'Kiribati' },
+  { value: 'Kuwait', label: 'Kuwait' },
+  { value: 'Kyrgyzstan', label: 'Kyrgyzstan' },
+  { value: 'Laos', label: 'Laos' },
+  { value: 'Latvia', label: 'Latvia' },
+  { value: 'Lebanon', label: 'Lebanon' },
+  { value: 'Lesotho', label: 'Lesotho' },
+  { value: 'Liberia', label: 'Liberia' },
+  { value: 'Libya', label: 'Libya' },
+  { value: 'Liechtenstein', label: 'Liechtenstein' },
+  { value: 'Lithuania', label: 'Lithuania' },
+  { value: 'Luxembourg', label: 'Luxembourg' },
+  { value: 'Madagascar', label: 'Madagascar' },
+  { value: 'Malawi', label: 'Malawi' },
+  { value: 'Malaysia', label: 'Malaysia' },
+  { value: 'Maldives', label: 'Maldives' },
+  { value: 'Mali', label: 'Mali' },
+  { value: 'Malta', label: 'Malta' },
+  { value: 'Marshall Islands', label: 'Marshall Islands' },
+  { value: 'Mauritania', label: 'Mauritania' },
+  { value: 'Mauritius', label: 'Mauritius' },
+  { value: 'Mexico', label: 'Mexico' },
+  { value: 'Micronesia', label: 'Micronesia' },
+  { value: 'Moldova', label: 'Moldova' },
+  { value: 'Monaco', label: 'Monaco' },
+  { value: 'Mongolia', label: 'Mongolia' },
+  { value: 'Montenegro', label: 'Montenegro' },
+  { value: 'Morocco', label: 'Morocco' },
+  { value: 'Mozambique', label: 'Mozambique' },
+  { value: 'Myanmar', label: 'Myanmar' },
+  { value: 'Namibia', label: 'Namibia' },
+  { value: 'Nauru', label: 'Nauru' },
+  { value: 'Nepal', label: 'Nepal' },
+  { value: 'Netherlands', label: 'Netherlands' },
+  { value: 'New Zealand', label: 'New Zealand' },
+  { value: 'Nicaragua', label: 'Nicaragua' },
+  { value: 'Niger', label: 'Niger' },
+  { value: 'Nigeria', label: 'Nigeria' },
+  { value: 'North Korea', label: 'North Korea' },
+  { value: 'North Macedonia', label: 'North Macedonia' },
+  { value: 'Norway', label: 'Norway' },
+  { value: 'Oman', label: 'Oman' },
+  { value: 'Pakistan', label: 'Pakistan' },
+  { value: 'Palau', label: 'Palau' },
+  { value: 'Panama', label: 'Panama' },
+  { value: 'Papua New Guinea', label: 'Papua New Guinea' },
+  { value: 'Paraguay', label: 'Paraguay' },
+  { value: 'Peru', label: 'Peru' },
+  { value: 'Philippines', label: 'Philippines' },
+  { value: 'Poland', label: 'Poland' },
+  { value: 'Portugal', label: 'Portugal' },
+  { value: 'Qatar', label: 'Qatar' },
+  { value: 'Romania', label: 'Romania' },
+  { value: 'Russia', label: 'Russia' },
+  { value: 'Rwanda', label: 'Rwanda' },
+  { value: 'Saint Kitts and Nevis', label: 'Saint Kitts and Nevis' },
+  { value: 'Saint Lucia', label: 'Saint Lucia' },
+  { value: 'Samoa', label: 'Samoa' },
+  { value: 'San Marino', label: 'San Marino' },
+  { value: 'Saudi Arabia', label: 'Saudi Arabia' },
+  { value: 'Senegal', label: 'Senegal' },
+  { value: 'Serbia', label: 'Serbia' },
+  { value: 'Seychelles', label: 'Seychelles' },
+  { value: 'Sierra Leone', label: 'Sierra Leone' },
+  { value: 'Singapore', label: 'Singapore' },
+  { value: 'Slovakia', label: 'Slovakia' },
+  { value: 'Slovenia', label: 'Slovenia' },
+  { value: 'Solomon Islands', label: 'Solomon Islands' },
+  { value: 'Somalia', label: 'Somalia' },
+  { value: 'South Africa', label: 'South Africa' },
+  { value: 'South Korea', label: 'South Korea' },
+  { value: 'Spain', label: 'Spain' },
+  { value: 'Sri Lanka', label: 'Sri Lanka' },
+  { value: 'Sudan', label: 'Sudan' },
+  { value: 'Suriname', label: 'Suriname' },
+  { value: 'Sweden', label: 'Sweden' },
+  { value: 'Switzerland', label: 'Switzerland' },
+  { value: 'Syria', label: 'Syria' },
+  { value: 'Tajikistan', label: 'Tajikistan' },
+  { value: 'Tanzania', label: 'Tanzania' },
+  { value: 'Thailand', label: 'Thailand' },
+  { value: 'Togo', label: 'Togo' },
+  { value: 'Tonga', label: 'Tonga' },
+  { value: 'Trinidad and Tobago', label: 'Trinidad and Tobago' },
+  { value: 'Tunisia', label: 'Tunisia' },
+  { value: 'Turkey', label: 'Turkey' },
+  { value: 'Turkmenistan', label: 'Turkmenistan' },
+  { value: 'Tuvalu', label: 'Tuvalu' },
+  { value: 'Uganda', label: 'Uganda' },
+  { value: 'Ukraine', label: 'Ukraine' },
+  { value: 'United Arab Emirates', label: 'United Arab Emirates' },
+  { value: 'United Kingdom', label: 'United Kingdom' },
+  { value: 'USA', label: 'United States' },
+  { value: 'Uruguay', label: 'Uruguay' },
+  { value: 'Uzbekistan', label: 'Uzbekistan' },
+  { value: 'Vanuatu', label: 'Vanuatu' },
+  { value: 'Venezuela', label: 'Venezuela' },
+  { value: 'Vietnam', label: 'Vietnam' },
+  { value: 'Yemen', label: 'Yemen' },
+  { value: 'Zambia', label: 'Zambia' },
+  { value: 'Zimbabwe', label: 'Zimbabwe' },
+];
 
 const Contact = () => {
   useEffect(() => { window.scrollTo(0, 0); }, []);
@@ -94,8 +285,8 @@ const Contact = () => {
                         <form onSubmit={handleSubmit} className="space-y-6">
                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                               <div className="flex flex-col space-y-2">
-                                 <label className="font-sans text-xs font-bold uppercase tracking-widest text-charcoal/70">Full Name *</label>
-                                 <input type="text" required value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="px-4 py-3 bg-gray-50 border border-gray-200 rounded-sm focus:outline-none focus:border-muted-gold focus:bg-white transition-colors" />
+                                 <label className="font-sans text-xs font-bold uppercase tracking-widest text-charcoal/70">Name</label>
+                                 <input type="text" value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})} className="px-4 py-3 bg-gray-50 border border-gray-200 rounded-sm focus:outline-none focus:border-muted-gold focus:bg-white transition-colors" />
                               </div>
                               <div className="flex flex-col space-y-2">
                                  <label className="font-sans text-xs font-bold uppercase tracking-widest text-charcoal/70">Email Address *</label>
@@ -109,8 +300,34 @@ const Contact = () => {
                                  <input type="tel" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} className="px-4 py-3 bg-gray-50 border border-gray-200 rounded-sm focus:outline-none focus:border-muted-gold focus:bg-white transition-colors" />
                               </div>
                               <div className="flex flex-col space-y-2">
-                                 <label className="font-sans text-xs font-bold uppercase tracking-widest text-charcoal/70">Country of Origin *</label>
-                                 <input type="text" required value={formData.country} onChange={e => setFormData({...formData, country: e.target.value})} className="px-4 py-3 bg-gray-50 border border-gray-200 rounded-sm focus:outline-none focus:border-muted-gold focus:bg-white transition-colors" />
+                                 <label className="font-sans text-xs font-bold uppercase tracking-widest text-charcoal/70">Country of Origin</label>
+                                 <Select 
+                                    options={countryOptions}
+                                    onChange={selectedOption => setFormData({...formData, country: selectedOption ? selectedOption.value : ''})}
+                                    isClearable
+                                    placeholder="Select country..."
+                                    styles={{
+                                       control: (base, state) => ({
+                                          ...base,
+                                          backgroundColor: '#FAF8F5',
+                                          borderColor: state.isFocused ? '#1B3A2D' : '#e5e7eb',
+                                          boxShadow: state.isFocused ? '0 0 0 1px #1B3A2D' : 'none',
+                                          '&:hover': { borderColor: state.isFocused ? '#1B3A2D' : '#d1d5db' },
+                                          padding: '2px', // matches input py rough equivalent
+                                          borderRadius: '0.125rem', // sm
+                                          fontFamily: '"Inter", sans-serif',
+                                          fontSize: '14px'
+                                       }),
+                                       option: (base, state) => ({
+                                          ...base,
+                                          backgroundColor: state.isSelected ? '#C9A96E' : state.isFocused ? '#FAF8F5' : 'white',
+                                          color: state.isSelected ? 'white' : '#333333',
+                                          fontFamily: '"Inter", sans-serif',
+                                          fontSize: '14px',
+                                          '&:hover': { backgroundColor: state.isSelected ? '#C9A96E' : '#FAF8F5' }
+                                       }),
+                                    }}
+                                 />
                               </div>
                            </div>
 
@@ -208,7 +425,7 @@ const Contact = () => {
                      <li className="flex flex-col">
                         <span className="font-sans text-xs uppercase tracking-widest font-bold text-muted-gold mb-1">Phone</span>
                         <a href="tel:+94784236507" className="font-sans text-charcoal hover:text-muted-gold transition-colors font-semibold">+94 78 423 6507</a>
-                        <span className="font-sans text-xs text-charcoal/50 mt-1">Available daily 8AM – 7PM (GMT+5:30)</span>
+                        <span className="font-sans text-xs text-charcoal/50 mt-1">Feel free to call or WhatsApp anytime — we're always happy to hear from you.</span>
                      </li>
                      <li className="flex flex-col">
                         <span className="font-sans text-xs uppercase tracking-widest font-bold text-muted-gold mb-1">Location</span>
@@ -221,11 +438,22 @@ const Contact = () => {
                   
                   {/* Socials Placeholder */}
                   <div className="flex justify-center gap-4">
-                     {['Insta', 'FB', 'YT', 'TripA'].map((net, i) => (
-                        <div key={i} className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center font-sans text-[10px] font-bold text-charcoal/40 hover:border-muted-gold hover:text-muted-gold transition-colors cursor-pointer">
-                           {net}
-                        </div>
-                     ))}
+                     {/* Instagram */}
+                     <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-200" style={{ background: 'radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%)' }}>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                     </a>
+                     {/* Facebook */}
+                     <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#1877F2] hover:scale-110 transition-transform duration-200">
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" className="w-5 h-5"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                     </a>
+                     {/* YouTube */}
+                     <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#FF0000] hover:scale-110 transition-transform duration-200">
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" className="w-[22px] h-[22px]"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                     </a>
+                     {/* TripAdvisor */}
+                     <a href="#" className="w-10 h-10 rounded-full flex items-center justify-center text-white bg-[#34E0A1] hover:scale-110 transition-transform duration-200">
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" className="w-[22px] h-[22px]"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 1.2c5.96 0 10.8 4.84 10.8 10.8 0 5.96-4.84 10.8-10.8 10.8-5.96 0-10.8-4.84-10.8-10.8 0-5.96 4.84-10.8 10.8-10.8zm8.62 9.07c-.45-.29-.86-.53-.94-.53-.08 0-.41.21-.73.46-.71.55-1.57.85-2.45.85-2.02 0-3.69-1.54-3.86-3.52 1.63-.56 2.82-2.11 2.82-3.94 0-2.31-1.89-4.2-4.2-4.2-2.31 0-4.2 1.89-4.2 4.2 0 1.83 1.19 3.38 2.82 3.94-.17 1.98-1.84 3.52-3.86 3.52-.88 0-1.74-.3-2.45-.85-.32-.25-.65-.46-.73-.46-.08 0-.49.24-.94.53-.45.29-.82.55-.82.58 0 .03.3.43.67.89 1.15 1.41 2.75 2.18 4.47 2.18 1.44 0 2.82-.48 3.97-1.37.13-.1.21-.13.25-.09.04.04.12.14.25.09 1.15.89 2.53 1.37 3.97 1.37 1.72 0 3.32-.77 4.47-2.18.37-.46.67-.86.67-.89 0-.03-.37-.29-.82-.58zM7.26 5.56c1.11 0 2.01.9 2.01 2.01s-.9 2.01-2.01 2.01-2.01-.9-2.01-2.01.9-2.01 2.01-2.01zm9.48 0c1.11 0 2.01.9 2.01 2.01s-.9 2.01-2.01 2.01-2.01-.9-2.01-2.01.9-2.01 2.01-2.01zM4.1 10.97c-.36-.08-.66-.23-.9-.45-.25-.22-.44-.51-.55-.85-.11-.34-.14-.71-.08-1.09.06-.38.19-.74.39-1.07.2-.33.48-.61.81-.81.33-.2.69-.33 1.07-.39.38-.06.75-.03 1.09.08.34.11.63.3.85.55.22.24.37.54.45.9.08.36.03.75-.14 1.11-.17.36-.45.65-.81.82-.36.17-.75.22-1.11.14l-1.07-.94zm15.8 0l-1.07.94c-.36.08-.75.03-1.11-.14-.36-.17-.64-.46-.81-.82-.17-.36-.22-.75-.14-1.11.08-.36.23-.66.45-.9.22-.25.51-.44.85-.55.34-.11.71-.14 1.09-.08.38.06.74.19 1.07.39.33.2.61.48.81.81.2.33.33.69.39 1.07.06.38.03.75-.08 1.09-.11.34-.3.63-.55.85-.24.22-.54.37-.9.45zM7.26 6.8c-.42 0-.75.33-.75.75s.33.75.75.75.75-.33.75-.75-.33-.75-.75-.75zm9.48 0c-.42 0-.75.33-.75.75s.33.75.75.75.75-.33.75-.75-.33-.75-.75-.75z"/></svg>
+                     </a>
                   </div>
 
                </div>
