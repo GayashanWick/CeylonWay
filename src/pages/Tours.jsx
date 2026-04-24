@@ -298,7 +298,7 @@ const Tours = () => {
                 {filteredAndSortedPackages.map((pkg, index) => (
                   <motion.div
                     key={pkg.slug}
-                className="group bg-white shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col"
+                className="group bg-white shadow-sm md:hover:shadow-2xl md:hover:-translate-y-1.5 md:hover:scale-[1.01] transition-all duration-500 ease-out flex flex-col"
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
