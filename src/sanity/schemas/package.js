@@ -16,6 +16,7 @@ export default {
           { title: 'Cultural', value: 'cultural' },
           { title: 'Wildlife', value: 'wildlife' },
           { title: 'Adventure', value: 'adventure' },
+          { title: 'Beach / Coastal', value: 'beach-coastal' },
           { title: 'Day Trip', value: 'day-trip' }
         ] 
       } 
