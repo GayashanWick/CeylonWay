@@ -62,10 +62,11 @@ const Navbar = () => {
   const menuIconColorClass = (isScrolled || !hasDarkHero) ? 'text-forest-green' : 'text-warm-ivory';
 
   return (
-    <nav className={`fixed top-0 w-full z-[60] transition-all duration-300 ease-out ${
-      isScrolled ? 'bg-warm-ivory/90 backdrop-blur-[12px] shadow-sm py-3' : 'bg-transparent py-6'
-    }`}>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+    <>
+      <nav className={`fixed top-0 w-full z-[60] transition-all duration-300 ease-out ${
+        isScrolled ? 'bg-warm-ivory/90 backdrop-blur-[12px] shadow-sm py-3' : 'bg-transparent py-6'
+      }`}>
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Logo */}
         <Link to="/" className={`font-serif text-3xl font-bold tracking-tight transition-colors ${logoColorClass}`}>
           Ceylon Way
@@ -99,9 +100,10 @@ const Navbar = () => {
           {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
+    </nav>
 
-      {/* Cinematic Mobile Menu Overlay */}
-      <AnimatePresence>
+    {/* Cinematic Mobile Menu Overlay */}
+    <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div 
             initial={{ opacity: 0 }}
@@ -170,7 +172,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 };
 
