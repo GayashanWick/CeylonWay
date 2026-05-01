@@ -10,11 +10,6 @@ const CategoryCardRow = () => {
       icon: MapPin,
     },
     {
-      title: 'Spa & Wellness',
-      description: 'Holistic Ayurvedic healing and meditation amidst serene landscapes.',
-      icon: Flower2,
-    },
-    {
       title: 'Cultural Trails',
       description: 'Immersive guided heritage walks exploring ancient forgotten kingdoms.',
       icon: Map,
@@ -45,7 +40,7 @@ const CategoryCardRow = () => {
     <section className="py-24 bg-warm-ivory px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

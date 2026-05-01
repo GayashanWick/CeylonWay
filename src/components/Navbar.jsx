@@ -39,8 +39,6 @@ const Navbar = () => {
   const baseNavLinks = [
     { name: 'Tours', href: '/tours' },
     { name: 'Destinations', href: '/destinations' },
-    { name: 'Wellness', href: '/wellness' },
-    { name: 'Gear', href: '/gear' },
     { name: 'Blog', href: '/blog' },
     { name: 'About', href: '/about' },
     { name: 'Contact', href: '/contact' },
@@ -54,7 +52,6 @@ const Navbar = () => {
   // Other standard pages have a light ivory background at the very top.
   const hasDarkHero = 
     location.pathname === '/' || 
-    location.pathname === '/wellness' || 
     (location.pathname.startsWith('/tours/') && location.pathname !== '/tours');
 
   const textColorClass = (isScrolled || !hasDarkHero) ? 'text-charcoal' : 'text-warm-ivory/90';

@@ -54,9 +54,6 @@ const Hero = () => {
           <Link to="/tours" className="bg-forest-green text-warm-ivory px-8 py-3.5 border border-forest-green hover:bg-forest-green/90 transition-colors font-sans text-sm tracking-widest uppercase font-semibold">
             Explore Tours
           </Link>
-          <Link to="/wellness" className="bg-transparent text-warm-ivory border-2 border-muted-gold px-8 py-3.5 hover:bg-muted-gold hover:text-white transition-colors font-sans text-sm tracking-widest uppercase font-semibold">
-            View Wellness Retreats
-          </Link>
         </motion.div>
       </div>
     </section>
