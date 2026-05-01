@@ -21,10 +21,10 @@ const Tours = () => {
 
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [sortOption, setSortOption] = useState('popular');
-  
+
   const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
   const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
-  
+
   const filterRef = useRef(null);
   const sortRef = useRef(null);
 
@@ -68,7 +68,7 @@ const Tours = () => {
           _createdAt,
           "imageUrl": images[0].asset->url
         }`;
-        
+
         const data = await client.fetch(query);
         setPackages(data);
         setLoading(false);
@@ -98,7 +98,7 @@ const Tours = () => {
   return (
     <section className="py-32 bg-warm-ivory px-6 md:px-12 min-h-screen">
       <div className="max-w-7xl mx-auto">
-        <motion.div 
+        <motion.div
           className="text-center mb-20"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -107,8 +107,7 @@ const Tours = () => {
           <h1 className="font-serif text-5xl md:text-6xl text-forest-green mb-6">Our Expeditions</h1>
           <div className="w-16 h-0.5 bg-muted-gold mx-auto mb-8"></div>
           <p className="font-sans text-charcoal/70 max-w-2xl mx-auto text-lg leading-relaxed">
-            Discover our curated selection of pristine wilderness journeys and holistic wellness retreats. 
-            All our itineraries are dynamically served directly from Sanity CMS.
+            Explore thoughtfully crafted journeys through Sri Lanka — from remote wilderness and cultural depth to restorative wellness retreats.
           </p>
         </motion.div>
 
@@ -129,25 +128,24 @@ const Tours = () => {
           <>
             {/* Custom Filtering and Sorting Row */}
             <div className="mb-12 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-20">
-              
+
               {/* FILTER DROPDOWN */}
               <div className="relative w-full sm:w-auto" ref={filterRef}>
-                <button 
+                <button
                   onClick={() => {
                     setIsFilterDropdownOpen(!isFilterDropdownOpen);
                     setIsSortDropdownOpen(false);
                   }}
-                  className={`w-full sm:w-auto flex items-center justify-between sm:justify-start gap-4 px-5 py-3 border transition-colors ${
-                    isFilterDropdownOpen 
-                      ? 'border-charcoal bg-white text-charcoal shadow-sm' 
-                      : selectedCategories.length > 0 
+                  className={`w-full sm:w-auto flex items-center justify-between sm:justify-start gap-4 px-5 py-3 border transition-colors ${isFilterDropdownOpen
+                      ? 'border-charcoal bg-white text-charcoal shadow-sm'
+                      : selectedCategories.length > 0
                         ? 'border-charcoal bg-white text-charcoal'
                         : 'border-gray-200 bg-transparent text-charcoal hover:border-charcoal'
-                  }`}
+                    }`}
                 >
                   <span className="font-sans text-xs uppercase tracking-widest font-semibold flex items-center gap-2">
                     <SlidersHorizontal size={14} />
-                    Filter by Experience 
+                    Filter by Experience
                     {selectedCategories.length > 0 && (
                       <span className="w-5 h-5 rounded-full bg-muted-gold text-white flex items-center justify-center text-[10px] ml-1">{selectedCategories.length}</span>
                     )}
@@ -157,7 +155,7 @@ const Tours = () => {
 
                 <AnimatePresence>
                   {isFilterDropdownOpen && (
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
@@ -167,7 +165,7 @@ const Tours = () => {
                       <div className="px-5 py-3 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
                         <span className="font-sans text-[10px] uppercase tracking-widest text-charcoal/50 font-bold">Select Categories</span>
                         {selectedCategories.length > 0 && (
-                          <button 
+                          <button
                             onClick={() => setSelectedCategories([])}
                             className="font-sans text-[10px] uppercase tracking-widest text-muted-gold hover:text-charcoal transition-colors font-bold"
                           >
@@ -182,8 +180,8 @@ const Tours = () => {
                             <button
                               key={cat.value}
                               onClick={() => {
-                                setSelectedCategories(prev => 
-                                  prev.includes(cat.value) 
+                                setSelectedCategories(prev =>
+                                  prev.includes(cat.value)
                                     ? prev.filter(c => c !== cat.value)
                                     : [...prev, cat.value]
                                 );
@@ -207,16 +205,15 @@ const Tours = () => {
 
               {/* SORT DROPDOWN */}
               <div className="relative w-full sm:w-auto" ref={sortRef}>
-                <button 
+                <button
                   onClick={() => {
                     setIsSortDropdownOpen(!isSortDropdownOpen);
                     setIsFilterDropdownOpen(false);
                   }}
-                  className={`w-full sm:w-auto flex items-center justify-between sm:justify-start gap-4 px-5 py-3 border transition-colors ${
-                    isSortDropdownOpen 
-                      ? 'border-charcoal bg-white text-charcoal shadow-sm' 
+                  className={`w-full sm:w-auto flex items-center justify-between sm:justify-start gap-4 px-5 py-3 border transition-colors ${isSortDropdownOpen
+                      ? 'border-charcoal bg-white text-charcoal shadow-sm'
                       : 'border-gray-200 bg-transparent text-charcoal hover:border-charcoal'
-                  }`}
+                    }`}
                 >
                   <span className="font-sans text-xs uppercase tracking-widest font-semibold flex items-center">
                     <span className="text-charcoal/50 mr-2">Sort By:</span>
@@ -227,7 +224,7 @@ const Tours = () => {
 
                 <AnimatePresence>
                   {isSortDropdownOpen && (
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 10 }}
@@ -255,7 +252,7 @@ const Tours = () => {
                     </motion.div>
                   )}
                 </AnimatePresence>
-               </div>
+              </div>
             </div>
 
             {/* Active Filters Display & Summary */}
@@ -264,14 +261,14 @@ const Tours = () => {
                 {selectedCategories.map(catValue => {
                   const catLabel = CATEGORY_MAP.find(c => c.value === catValue)?.label;
                   return (
-                    <motion.span 
+                    <motion.span
                       initial={{ scale: 0.9, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      key={catValue} 
+                      key={catValue}
                       className="inline-flex items-center gap-2 pl-3 pr-2 py-1.5 bg-white border border-gray-200 shadow-sm text-charcoal font-sans text-[10px] uppercase tracking-widest font-bold"
                     >
                       {catLabel}
-                      <button 
+                      <button
                         onClick={() => setSelectedCategories(selectedCategories.filter(c => c !== catValue))}
                         className="w-4 h-4 flex items-center justify-center text-charcoal/40 hover:text-charcoal hover:bg-gray-100 transition-colors rounded-sm"
                       >
@@ -280,7 +277,7 @@ const Tours = () => {
                     </motion.span>
                   );
                 })}
-                <button 
+                <button
                   onClick={() => setSelectedCategories([])}
                   className="font-sans text-[10px] uppercase tracking-widest text-charcoal/50 hover:text-charcoal transition-colors font-bold ml-2 underline decoration-gray-300 underline-offset-4 hover:decoration-charcoal"
                 >
@@ -298,52 +295,52 @@ const Tours = () => {
                 {filteredAndSortedPackages.map((pkg, index) => (
                   <motion.div
                     key={pkg.slug}
-                className="group bg-white shadow-sm md:hover:shadow-2xl md:hover:-translate-y-1.5 md:hover:scale-[1.01] transition-all duration-500 ease-out flex flex-col"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: index * 0.12, ease: "easeOut" }}
-              >
-                <Link to={`/tours/${pkg.slug}`} className="block overflow-hidden relative h-72 cursor-pointer">
-                  <div className="absolute top-4 left-4 z-10 bg-warm-ivory text-forest-green font-sans text-[10px] tracking-widest font-bold uppercase px-3 py-1.5 shadow-md">
-                    {CATEGORY_MAP.find(c => c.value === pkg.category)?.label || pkg.category}
-                  </div>
-                  {pkg.imageUrl ? (
-                    <img
-                      src={pkg.imageUrl}
-                      alt={pkg.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-forest-green/10 flex items-center justify-center text-forest-green/30 font-sans tracking-widest text-sm uppercase font-semibold">
-                      No Image Set
-                    </div>
-                  )}
-                </Link>
-                
-                <div className="p-8 flex-grow flex flex-col">
-                  <Link to={`/tours/${pkg.slug}`}>
-                    <h3 className="font-serif text-3xl text-charcoal mb-4 group-hover:text-muted-gold transition-colors line-clamp-2">{pkg.title}</h3>
-                  </Link>
-                  <p className="font-sans text-charcoal/70 mb-8 line-clamp-3 font-light text-sm">
-                    {pkg.shortDescription}
-                  </p>
-                  
-                  <div className="mt-auto">
-                    <div className="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
-                      <span className="font-sans text-xs text-charcoal/60 tracking-wider uppercase font-medium">{pkg.duration}</span>
-                      <span className="font-sans text-sm font-semibold text-forest-green">LKR {pkg.priceFrom?.toLocaleString()}</span>
-                    </div>
-                    <Link to={`/tours/${pkg.slug}`} className="font-sans text-xs font-bold tracking-widest uppercase text-charcoal hover:text-muted-gold transition-colors flex items-center">
-                      View Itinerary <span className="ml-2">→</span>
+                    className="group bg-white shadow-sm md:hover:shadow-2xl md:hover:-translate-y-1.5 md:hover:scale-[1.01] transition-all duration-500 ease-out flex flex-col"
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7, delay: index * 0.12, ease: "easeOut" }}
+                  >
+                    <Link to={`/tours/${pkg.slug}`} className="block overflow-hidden relative h-72 cursor-pointer">
+                      <div className="absolute top-4 left-4 z-10 bg-warm-ivory text-forest-green font-sans text-[10px] tracking-widest font-bold uppercase px-3 py-1.5 shadow-md">
+                        {CATEGORY_MAP.find(c => c.value === pkg.category)?.label || pkg.category}
+                      </div>
+                      {pkg.imageUrl ? (
+                        <img
+                          src={pkg.imageUrl}
+                          alt={pkg.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-forest-green/10 flex items-center justify-center text-forest-green/30 font-sans tracking-widest text-sm uppercase font-semibold">
+                          No Image Set
+                        </div>
+                      )}
                     </Link>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        )}
-        </>
+
+                    <div className="p-8 flex-grow flex flex-col">
+                      <Link to={`/tours/${pkg.slug}`}>
+                        <h3 className="font-serif text-3xl text-charcoal mb-4 group-hover:text-muted-gold transition-colors line-clamp-2">{pkg.title}</h3>
+                      </Link>
+                      <p className="font-sans text-charcoal/70 mb-8 line-clamp-3 font-light text-sm">
+                        {pkg.shortDescription}
+                      </p>
+
+                      <div className="mt-auto">
+                        <div className="flex justify-between items-center mb-6 border-b border-gray-100 pb-4">
+                          <span className="font-sans text-xs text-charcoal/60 tracking-wider uppercase font-medium">{pkg.duration}</span>
+                          <span className="font-sans text-sm font-semibold text-forest-green">LKR {pkg.priceFrom?.toLocaleString()}</span>
+                        </div>
+                        <Link to={`/tours/${pkg.slug}`} className="font-sans text-xs font-bold tracking-widest uppercase text-charcoal hover:text-muted-gold transition-colors flex items-center">
+                          View Itinerary <span className="ml-2">→</span>
+                        </Link>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </div>
     </section>
